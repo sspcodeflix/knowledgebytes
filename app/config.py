@@ -1,5 +1,5 @@
 import os
-from flask_cors import CORS
+
 
 base_dir = os.path.abspath(os.path.dirname(__file__))
 

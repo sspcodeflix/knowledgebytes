@@ -2,6 +2,8 @@ import os
 import sqlite3
 from app import create_app, db
 
+from flask_cors import CORS
+
 def create_tables_if_not_exists(database_path, sql_file_path):
     with sqlite3.connect(database_path) as conn:
         cursor = conn.cursor()
@@ -18,7 +20,9 @@ def apply_migrations():
 
 if __name__ == '__main__':
     app = create_app('development')
+    cors = CORS(app, resources={r"/api/*": {"origins": "https://superstarbot.online"}})
 
+    app.config['CORS_HEADERS'] = 'Content-Type'
     database_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'app/site.db')
     sql_file_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'create_tables.sql')
 
