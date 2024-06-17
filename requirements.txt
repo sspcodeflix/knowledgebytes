@@ -9,3 +9,4 @@ Flask-JWT-Extended
 flask-cors
 Werkzeug==2.2.3
 gunicorn==21.2.0
+PyMySQL
