@@ -8,4 +8,8 @@ Install dependencies -> pip install -r requirements.txt
 
 Run tests -> pytest -s
 
-Run the application -> python run.py
+Set the source(region of deployment, refer README.md for sample env) -> source .env 
+
+upgrade the database -> flask db upgrade
+
+Run the application in production -> python run.py
