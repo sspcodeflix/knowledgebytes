@@ -19,7 +19,7 @@ def apply_migrations():
     os.system('flask db upgrade')
 
 if __name__ == '__main__':
-    app = create_app('production')
+    app = create_app('development')
     cors = CORS(app, resources={r"/api/*": {"origins": "https://superstarbot.online"}})
 
     app.config['CORS_HEADERS'] = 'Content-Type'
