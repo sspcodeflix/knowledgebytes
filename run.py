@@ -23,11 +23,11 @@ if __name__ == '__main__':
     cors = CORS(app, resources={r"/api/*": {"origins": "https://superstarbot.online"}})
 
     app.config['CORS_HEADERS'] = 'Content-Type'
-    database_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'app/site.db')
-    sql_file_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'create_tables.sql')
+    # database_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'app/site.db')
+    # sql_file_path = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'create_tables.sql')
 
     # Check and create tables if they don't exist
-    create_tables_if_not_exists(database_path, sql_file_path)
+    # create_tables_if_not_exists(database_path, sql_file_path)
 
     # Apply migrations
     apply_migrations()
