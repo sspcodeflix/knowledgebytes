@@ -1,0 +1,11 @@
+create a virtual environment -> python3 -m venv .venv
+
+Activate virtual environment -> source .venv/bin/activate
+
+Set Python path -> export PYTHONPATH=$(pwd)
+
+Install dependencies -> pip install -r requirements.txt
+
+Run tests -> pytest -s
+
+Run the application -> python run.py

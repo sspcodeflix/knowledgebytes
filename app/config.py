@@ -1,4 +1,5 @@
 import os
+from flask_cors import CORS
 
 base_dir = os.path.abspath(os.path.dirname(__file__))
 
@@ -9,6 +10,9 @@ class Config:
     JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY', 'mysecret')  # Change this!
     JWT_ACCESS_TOKEN_EXPIRES = 3600  # 1 hour
     JWT_REFRESH_TOKEN_EXPIRES = 86400  # 1 day
+    SESSION_COOKIE_SECURE = True
+    cors = CORS(app, resources={r"/api/*": {"origins": "https://alpha.online"}})
+    CORS_HEADERS = 'Content-Type'
 
 class DevelopmentConfig(Config):
     DEBUG = True
@@ -19,6 +23,8 @@ class TestingConfig(Config):
 
 class ProductionConfig(Config):
     DEBUG = False
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
+        'mysql+pymysql://username:password@localhost/dbname'
 
 config = {
     'development': DevelopmentConfig,
