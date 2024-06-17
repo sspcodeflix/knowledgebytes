@@ -18,3 +18,4 @@ venv/
 *.iws
 *.iml
 *.ipr
+mysql/mysql_data/*
