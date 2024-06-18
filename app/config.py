@@ -21,7 +21,7 @@ class TestingConfig(Config):
 
 class ProductionConfig(Config):
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:Amazon_2025@localhost:3306/db'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:password@localhost:3306/db'
 
 config = {
     'development': DevelopmentConfig,
