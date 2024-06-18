@@ -10,7 +10,7 @@ This is a simple Quiz application built with Flask and SQLAlchemy. The applicati
 
    ```sh
    git clone https://github.com/yourusername/knowledgebytes.git
-   cd quiz-app
+   cd knowledgebytes
    ```
 
 2. **Create Virtual Environment**:
@@ -34,11 +34,6 @@ This is a simple Quiz application built with Flask and SQLAlchemy. The applicati
     export PYTHONPATH=$(pwd)   # On macOS/Linux
     set PYTHONPATH=%cd%        # On Windows
     ```
-
-## API Docs - Local ##
-```
-http://127.0.0.1:5000
-```
 
 ## Setup Instructions
 
@@ -93,19 +88,17 @@ KNOWLEDGEBYTES
 │   └── routes.py
 ├── gunicorn-logs
 ├── migrations
-│   ├── __pycache__
 │   ├── versions
 │   ├── alembic.ini
 │   ├── env.py
 │   ├── README
 │   └── script.py.mako
 ├── tests
-│   ├── __pycache__
 │   ├── conftest.py
 │   ├── test_auth.py
 │   └── test_routes.py
-├── .env
-├── .env-sample
+├── .env (Actual environment file holding all credentials)
+├── .env-sample (reference)
 ├── .gitignore
 ├── gunicorn_config.py
 ├── manage.py
@@ -114,8 +107,6 @@ KNOWLEDGEBYTES
 ├── requirements.txt
 ├── run.py
 ├── server.conf
-├── site.db
-├── test.db
 └── wsgi.py
 
 ```
