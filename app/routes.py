@@ -8,7 +8,7 @@ from sqlalchemy.sql import func
 main = Blueprint('main', __name__)
 api = Api(main)
 
-@main.route('/home')
+@main.route('/')
 def index():
     return "Welcome to the Quiz App"
 
