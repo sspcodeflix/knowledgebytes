@@ -1,0 +1,9 @@
+version: '3'
+services:
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot certonly --webroot -w /var/www/certbot -d superstarbot.online --email info@superstarbot.online --rsa-key-size 2048 --agree-tos --force-renewal; sleep 12h & wait $${!}; done;'"
