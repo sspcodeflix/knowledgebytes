@@ -1,0 +1,15 @@
+services:
+  python:
+    build: .
+    container_name: python
+    ports:
+      - "5000:5000"
+    environment:
+      - PYTHONPATH=/app
+      - FLASK_ENV=${FLASK_ENV}
+    volumes:
+      - .:/app
+    command: >
+      sh -c "
+      flask db upgrade &&
+      gunicorn -c gunicorn_config.py run:app --access-logfile gunicorn-logs/access.log --error-logfile gunicorn-logs/error.log"

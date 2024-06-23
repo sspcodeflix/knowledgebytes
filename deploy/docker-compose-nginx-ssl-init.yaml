@@ -1,0 +1,10 @@
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx-ssl-init
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/ssl-init.conf:/etc/nginx/nginx.conf
+      - ./certbot/letsencrypt:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
