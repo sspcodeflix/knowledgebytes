@@ -1,4 +1,17 @@
 services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_ROOT_AUTH_PLUGIN: 'mysql_native_password'
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./deploy/mysql/mysql_data:/var/lib/mysql
+
   python:
     build: .
     container_name: python
@@ -13,3 +26,41 @@ services:
       sh -c "
       flask db upgrade &&
       gunicorn -c gunicorn_config.py run:app --access-logfile gunicorn-logs/access.log --error-logfile gunicorn-logs/error.log"
+
+  nginx-ssl-init:
+    image: nginx:latest
+    container_name: nginx-ssl-init
+    ports:
+      - "80:80"
+    volumes:
+      - ./deploy/nginx/ssl-init.conf.template:/etc/nginx/nginx.conf.template
+      - ./deploy/certbot/letsencrypt:/etc/letsencrypt
+      - ./deploy/certbot/www:/var/www/certbot
+      - ./deploy/nginx/entrypoint.sh:/entrypoint.sh
+      - ./.env:/.env
+    entrypoint: /bin/bash /entrypoint.sh
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - ./deploy/certbot/letsencrypt:/etc/letsencrypt
+      - ./deploy/certbot/www:/var/www/certbot
+      - ./deploy/certbot/entrypoint.sh:/entrypoint.sh
+      - ./.env:/.env
+    entrypoint: /bin/sh /entrypoint.sh
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./deploy/nginx/nginx.conf.template:/etc/nginx/nginx.conf.template
+      - ./deploy/certbot/letsencrypt:/etc/letsencrypt
+      - ./deploy/certbot/www:/var/www/certbot
+      - ./deploy/nginx/entrypoint.sh:/entrypoint.sh
+      - ./.env:/.env
+    entrypoint: /bin/bash /entrypoint.sh
+

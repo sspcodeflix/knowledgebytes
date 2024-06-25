@@ -5,7 +5,7 @@ events {
 http {
     server {
         listen 80;
-        server_name superstarbot.online;
+        server_name ${HOSTNAME};
 
         location / {
             proxy_pass http://172.17.0.1:5000;
@@ -20,10 +20,10 @@ http {
 }
     server {
         listen 443 ssl;
-        server_name superstarbot.online;
+        server_name ${HOSTNAME};
 
-        ssl_certificate /etc/letsencrypt/live/superstarbot.online/fullchain.pem;
-        ssl_certificate_key /etc/letsencrypt/live/superstarbot.online/privkey.pem;
+        ssl_certificate /etc/letsencrypt/live/${HOSTNAME}/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/${HOSTNAME}/privkey.pem;
 
        location / {
             proxy_pass http://172.17.0.1:5000;

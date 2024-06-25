@@ -5,7 +5,7 @@ events {
 http {
     server {
         listen 80;
-        server_name superstarbot.online;
+        server_name ${HOSTNAME};
 
         location / {
             proxy_pass http://172.17.0.1:5000;
