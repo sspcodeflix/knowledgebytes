@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Before Running This Script Make Sure To Create An ".env" File From ".env-sample" As Per Your Requirements.
+echo "Before Running This Script Make Sure To Create An ".env" File From ".env-sample" As Per Your Requirements."
 sleep 20
 
 echo "Starting MySQL Server..."
